@@ -136,13 +136,21 @@ def categorize_crime(row):
             return category
     return "Uncategorized"
 
-
-if __name__ == "__main__":
-    data_folder = "data/raw"
-    output_file = "data/processed/compiled_data.csv"
-    os.makedirs(os.path.dirname(output_file), exist_ok=True)
-    # compile_data(data_folder, output_file)
-    df = pd.read_csv(output_file, low_memory=False)
-    df["CATEGORY"] = df.apply(categorize_crime, axis=1)
+def main():
+    # data_folder = "data/raw"
+    # output_file = "data/processed/compiled_data.csv"
+    # os.makedirs(os.path.dirname(output_file), exist_ok=True)
+    # # compile_data(data_folder, output_file)
+    # df = pd.read_csv(output_file, low_memory=False)
+    # df["CATEGORY"] = df.apply(categorize_crime, axis=1)
     cat_output_file = "data/processed/categorized_data.csv"
-    df.to_csv(cat_output_file, index=False)
+    # df.to_csv(cat_output_file, index=False)
+    df = pd.read_csv(cat_output_file, low_memory=False)
+    for category in df["CATEGORY"].unique():
+        category_df = df[df["CATEGORY"] == category]
+        category_df.to_csv(f"data/processed/categorized/{category}.csv", index=False)
+        
+        
+if __name__ == "__main__":
+    
+    df = pd.read_csv(cat_output_file, low_memory=False)

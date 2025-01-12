@@ -1,5 +1,12 @@
 # Crime Incident Reports Dataset - Data Dictionary
 
+## Dataset Origin
+The dataset used in this project is sourced from the Boston Police Department (BPD) and is available on the Boston Data Portal:
+- [Crime Incident Reports Dataset](https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system/resource/b973d8cb-eeb2-4e7e-99da-c92938efc9c0)
+
+Crime incident reports are provided by BPD to document the initial details surrounding an incident to which BPD officers respond. This dataset contains records from the new crime incident report system, which includes a reduced set of fields focused on capturing the type of incident as well as when and where it occurred. Records in the new system begin in June of 2015.
+
+The records used in this project are from 1/1/2020 to 1/11/2025.
 ## Incident Details
 
 | Variable Name | Type    | Description | Possible Values |
@@ -23,24 +30,7 @@
 | Long | Numerical | Longitude of the incident location | Decimal degrees |
 | Location | String | Combined latitude and longitude | "(Lat, Long)" |
 
-## Notes
+## Additional data
 
-1. **Missing Values**
-   - Missing values will be coded as 'NA'
-   - Numerical variables: Will be handled using mean or median imputation based on distribution
-   - Categorical variables: Will be handled using mode imputation or creating a 'Missing' category
+  As you can see above there isn't a categorical datapoint in order to simplify analysis, so I made one.
 
-2. **Derived Features**
-   - incident_duration = (END_DATE - OCCURRED_ON_DATE).total_seconds() / 3600
-   - is_weekend = DAY_OF_WEEK in ['Saturday', 'Sunday']
-
-3. **Data Collection Context**
-   - Data collected from crime incident reports
-   - Purpose: Analyze crime patterns and trends
-   - Scope: Incidents reported in a specific city
-
-4. **Data Quality Considerations**
-   - All categorical variables will be encoded appropriately for modeling
-   - Numerical variables will be checked for outliers
-   - Correlations between incident details will be analyzed
-   - Incident reports will be validated for logical consistency
